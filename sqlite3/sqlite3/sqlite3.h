@@ -4685,6 +4685,7 @@ SQLITE_API int sqlite3_bind_blob64(sqlite3_stmt*, int, const void*, sqlite3_uint
 SQLITE_API int sqlite3_bind_double(sqlite3_stmt*, int, double);
 SQLITE_API int sqlite3_bind_int(sqlite3_stmt*, int, int);
 SQLITE_API int sqlite3_bind_int64(sqlite3_stmt*, int, sqlite3_int64);
+SQLITE_API int sqlite3_bind_queryid(sqlite3_stmt*, int, sqlite3_int64);
 SQLITE_API int sqlite3_bind_null(sqlite3_stmt*, int);
 SQLITE_API int sqlite3_bind_text(sqlite3_stmt*,int,const char*,int,void(*)(void*));
 SQLITE_API int sqlite3_bind_text16(sqlite3_stmt*, int, const void*, int, void(*)(void*));
@@ -5619,6 +5620,8 @@ SQLITE_API int sqlite3_create_window_function(
 SQLITE_API SQLITE_DEPRECATED int sqlite3_aggregate_count(sqlite3_context*);
 SQLITE_API SQLITE_DEPRECATED int sqlite3_expired(sqlite3_stmt*);
 SQLITE_API SQLITE_DEPRECATED int sqlite3_transfer_bindings(sqlite3_stmt*, sqlite3_stmt*);
+SQLITE_API SQLITE_DEPRECATED int sqlite3_swap_bindings(sqlite3_stmt*, sqlite3_stmt*, int*, int);
+SQLITE_API SQLITE_DEPRECATED void sqlite3_vdbe_swap(sqlite3*, sqlite3*);
 SQLITE_API SQLITE_DEPRECATED int sqlite3_global_recover(void);
 SQLITE_API SQLITE_DEPRECATED void sqlite3_thread_cleanup(void);
 SQLITE_API SQLITE_DEPRECATED int sqlite3_memory_alarm(void(*)(void*,sqlite3_int64,int),

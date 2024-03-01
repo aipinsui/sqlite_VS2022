@@ -36,6 +36,7 @@ struct sqlite3_api_routines {
   int  (*bind_double)(sqlite3_stmt*,int,double);
   int  (*bind_int)(sqlite3_stmt*,int,int);
   int  (*bind_int64)(sqlite3_stmt*,int,sqlite_int64);
+  int  (*bind_queryid)(sqlite3_stmt*, int, sqlite_int64);
   int  (*bind_null)(sqlite3_stmt*,int);
   int  (*bind_parameter_count)(sqlite3_stmt*);
   int  (*bind_parameter_index)(sqlite3_stmt*,const char*zName);
@@ -142,6 +143,8 @@ struct sqlite3_api_routines {
   int  (*total_changes)(sqlite3*);
   void * (*trace)(sqlite3*,void(*xTrace)(void*,const char*),void*);
   int  (*transfer_bindings)(sqlite3_stmt*,sqlite3_stmt*);
+  int  (*swap_bindings)(sqlite3_stmt*, sqlite3_stmt*, int*, int);
+  void (*vdbe_swap)(sqlite3*, sqlite3*);
   void * (*update_hook)(sqlite3*,void(*)(void*,int ,char const*,char const*,
                                          sqlite_int64),void*);
   void * (*user_data)(sqlite3_context*);
@@ -398,6 +401,7 @@ typedef int (*sqlite3_loadext_entry)(
 #define sqlite3_bind_double            sqlite3_api->bind_double
 #define sqlite3_bind_int               sqlite3_api->bind_int
 #define sqlite3_bind_int64             sqlite3_api->bind_int64
+#define sqlite3_bind_queryid           sqlite3_api->bind_queryid
 #define sqlite3_bind_null              sqlite3_api->bind_null
 #define sqlite3_bind_parameter_count   sqlite3_api->bind_parameter_count
 #define sqlite3_bind_parameter_index   sqlite3_api->bind_parameter_index
@@ -500,6 +504,8 @@ typedef int (*sqlite3_loadext_entry)(
 #define sqlite3_trace                  sqlite3_api->trace
 #ifndef SQLITE_OMIT_DEPRECATED
 #define sqlite3_transfer_bindings      sqlite3_api->transfer_bindings
+#define sqlite3_swap_bindings		   sqlite3_api->swap_bindings
+#define sqlite3_vdbe_swap              sqlite3_api->vdbe_swap
 #endif
 #define sqlite3_update_hook            sqlite3_api->update_hook
 #define sqlite3_user_data              sqlite3_api->user_data
