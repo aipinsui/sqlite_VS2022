@@ -507,6 +507,7 @@ typedef int (*sqlite3_loadext_entry)(
 #define sqlite3_swap_bindings		   sqlite3_api->swap_bindings
 #define sqlite3_vdbe_swap              sqlite3_api->vdbe_swap
 #endif
+
 #define sqlite3_update_hook            sqlite3_api->update_hook
 #define sqlite3_user_data              sqlite3_api->user_data
 #define sqlite3_value_blob             sqlite3_api->value_blob
